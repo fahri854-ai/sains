@@ -112,6 +112,885 @@
             gap: 10px;
         }
 
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--primary); transition: var(--transition); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+
+        .lang-select {
+            background: var(--bg-glass);
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+        }
+        .lang-select:hover { border-color: var(--primary); }
+        .lang-select option { background: var(--bg-body); color: var(--text-main); }
+
+        .theme-toggle {
+            background: transparent;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover { background: var(--bg-glass); }
+        .mobile-menu-btn { display: none; background: transparent; color: var(--text-main); font-size: 1.5rem; }
+
+        /* Buttons */
+        .btn { padding: 10px 24px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-outline:hover { background: var(--primary); color: white; }
+        .btn-wa { background-color: var(--wa-color); color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-wa:hover { background-color: var(--wa-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); color: white; }
+
+        /* Main Content Wrapper */
+        #app { margin-top: 70px; min-height: 80vh; }
+
+        /* Hero Section */
+        .hero { padding: 100px 0 60px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: var(--primary); filter: blur(150px); opacity: 0.15; border-radius: 50%; z-index: -1; }
+        .hero::after { content: ''; position: absolute; bottom: -20%; right: -10%; width: 400px; height: 400px; background: var(--accent); filter: blur(150px); opacity: 0.15; border-radius: 50%; z-index: -1; }
+        .hero-container { display: flex; align-items: center; gap: 50px; }
+        .hero-content { flex: 1; }
+        .hero-image-wrapper { flex: 1; position: relative; }
+        .hero-image-wrapper img { width: 100%; border-radius: 30px; box-shadow: var(--shadow-hover); animation: float 6s ease-in-out infinite; object-fit: cover; height: 450px; }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(to right, var(--text-main), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; }
+        .hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+        .stat-item h3 { font-size: 2rem; color: var(--primary); }
+        .stat-item p { font-size: 0.9rem; margin: 0; }
+
+        /* Search & Filter */
+        .controls-section { padding: 40px 0; }
+        .controls-wrapper { display: flex; flex-direction: column; gap: 20px; padding: 20px; border-radius: 20px; }
+        .search-bar { display: flex; width: 100%; position: relative; }
+        .search-bar input { width: 100%; padding: 15px 20px 15px 50px; border-radius: 30px; border: 1px solid var(--border-glass); background: var(--bg-glass-solid); color: var(--text-main); font-size: 1rem; outline: none; transition: var(--transition); }
+        .search-bar input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .filters { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .category-chips { display: flex; gap: 10px; flex-wrap: wrap; flex: 1; }
+        .chip { padding: 8px 16px; border-radius: 20px; background: var(--bg-glass-solid); border: 1px solid var(--border-glass); color: var(--text-muted); font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+        .chip:hover, .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .sort-select { padding: 10px 15px; border-radius: 10px; background: var(--bg-glass-solid); border: 1px solid var(--border-glass); color: var(--text-main); outline: none; cursor: pointer; }
+
+        /* Article Grid */
+        .articles-section { padding: 20px 0 60px; }
+        .section-title { font-size: 2rem; margin-bottom: 30px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 50%; height: 3px; background: var(--primary); border-radius: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .card { border-radius: 20px; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; position: relative; cursor: pointer; }
+        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border-glass); transition: transform 0.5s ease; }
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-img-wrapper { overflow: hidden; position: relative; }
+        .card-category { position: absolute; top: 15px; left: 15px; background: rgba(15, 23, 42, 0.7); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(4px); }
+        .card-bookmark { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; color: var(--text-main); z-index: 2; }
+        .card-bookmark.active { color: var(--primary); }
+        .card-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+        .card-meta { display: flex; gap: 15px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; }
+        .card-title { font-size: 1.25rem; margin-bottom: 10px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-excerpt { font-size: 0.95rem; margin-bottom: 20px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 15px; font-size: 0.85rem; }
+        .author-info { display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 600; }
+        .author-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+
+        /* Article Detail Page */
+        .article-detail-wrapper { max-width: 900px; margin: 0 auto; padding: 40px 0; }
+        .breadcrumb { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+        .breadcrumb a { color: var(--primary); }
+        .article-header { text-align: center; margin-bottom: 40px; }
+        .article-title { font-size: 2.8rem; margin: 15px 0; }
+        .article-meta-large { display: flex; justify-content: center; align-items: center; gap: 20px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; flex-wrap: wrap; }
+        .article-hero-img { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; margin-bottom: 40px; box-shadow: var(--shadow); }
+        
+        .article-layout { display: grid; grid-template-columns: 250px 1fr; gap: 40px; align-items: start; }
+        .toc-sidebar { position: sticky; top: 100px; padding: 20px; border-radius: 15px; }
+        .toc-sidebar h3 { font-size: 1.1rem; margin-bottom: 15px; color: var(--primary); border-bottom: 1px solid var(--border-glass); padding-bottom: 10px; }
+        .toc-list li { margin-bottom: 10px; }
+        .toc-list a { font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
+        .toc-list a:hover { color: var(--primary); padding-left: 5px; }
+        
+        .article-body { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); }
+        .article-body h2 { font-size: 1.8rem; margin: 40px 0 20px; color: var(--primary); scroll-margin-top: 90px; }
+        .article-body p { margin-bottom: 20px; color: inherit; }
+        .article-quote { border-left: 4px solid var(--accent); padding: 20px 30px; margin: 30px 0; background: var(--bg-glass); border-radius: 0 15px 15px 0; font-style: italic; font-size: 1.2rem; }
+        .article-references { margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--border-glass); }
+        .article-references h3 { margin-bottom: 15px; }
+        .article-references li { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; }
+        
+        .article-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding: 20px; border-radius: 15px; }
+        .share-buttons { display: flex; gap: 10px; }
+        .btn-share { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-glass-solid); border: 1px solid var(--border-glass); display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: var(--transition); }
+        .btn-share:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        /* Contact Page */
+        .contact-section { padding: 40px 0 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .contact-image { width: 100%; height: 500px; object-fit: cover; border-radius: 30px; box-shadow: var(--shadow); }
+
+        /* Newsletter */
+        .newsletter { margin: 80px 0; padding: 60px 20px; text-align: center; border-radius: 30px; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--bg-glass-solid), var(--bg-glass)); }
+        .newsletter::before { content: ''; position: absolute; width: 300px; height: 300px; background: var(--accent); filter: blur(100px); opacity: 0.1; top: -150px; right: -150px; border-radius: 50%; }
+        .newsletter h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        .newsletter p { max-width: 500px; margin: 0 auto 30px; }
+        .newsletter-form { display: flex; max-width: 500px; margin: 0 auto; gap: 10px; }
+        .newsletter-form input { flex: 1; padding: 15px 25px; border-radius: 30px; border: 1px solid var(--border-glass); background: var(--bg-body); color: var(--text-main); outline: none; }
+        .newsletter-form input:focus { border-color: var(--primary); }
+
+        /* Footer */
+        footer { background: var(--bg-glass-solid); border-top: 1px solid var(--border-glass); padding: 60px 0 20px; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-about p { margin-top: 20px; font-size: 0.95rem; }
+        .footer-links h4 { font-size: 1.1rem; margin-bottom: 20px; color: var(--primary); }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { font-size: 0.95rem; color: var(--text-muted); transition: var(--transition); }
+        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--border-glass); font-size: 0.9rem; color: var(--text-muted); }
+
+        /* Back to top */
+        #backToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 99; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
+        #backToTop.show { opacity: 1; visibility: visible; }
+        #backToTop:hover { transform: translateY(-5px); background: var(--accent); }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* SVG Icons Inline */
+        .icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container, .contact-section { flex-direction: column; text-align: center; }
+            .hero-content, .hero-image-wrapper { width: 100%; }
+            .hero-stats { justify-content: center; }
+            .contact-image { height: 350px; }
+            .article-layout { grid-template-columns: 1fr; }
+            .toc-sidebar { position: static; margin-bottom: 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--bg-glass-solid); backdrop-filter: blur(20px); flex-direction: column; align-items: center; padding-top: 40px; transition: var(--transition); }
+            .nav-links.active { left: 0; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .newsletter-form { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* Empty state */
+        .empty-state { text-align: center; padding: 50px 0; color: var(--text-muted); grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo" onclick="navigateTo('home')">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--primary); width: 28px; height: 28px;">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                SciComm
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#" class="active" onclick="navigateTo('home')" data-i18n="navHome">Beranda</a>
+                <a href="#kategori" onclick="navigateTo('home'); setTimeout(()=>document.getElementById('kategori').scrollIntoView(), 100);" data-i18n="navCat">Kategori</a>
+                <a href="#" onclick="alert('In development')" data-i18n="navAuthor">Penulis</a>
+                <a href="#" onclick="alert('In development')" data-i18n="navAbout">Tentang</a>
+                <a href="#" onclick="navigateTo('contact')" data-i18n="navContact">Kontak</a>
+            </nav>
+            <div class="nav-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
+                    <option value="id">ID</option>
+                    <option value="en">EN</option>
+                    <option value="zh">ZH</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode"></button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app"></main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="logo">
+                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--primary); width: 24px; height: 24px;">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        SciComm
+                    </a>
+                    <p data-i18n="footerAbout">Platform edukasi sains terdepan yang menyajikan artikel, inovasi, dan penemuan terbaru dengan standar jurnalistik tinggi untuk mencerahkan wawasan masyarakat.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="navCat">Kategori</h4>
+                    <ul>
+                        <li><a href="#" onclick="navigateTo('home')" data-i18n="catAstro">Astronomi</a></li>
+                        <li><a href="#" onclick="navigateTo('home')" data-i18n="catPhysics">Fisika</a></li>
+                        <li><a href="#" onclick="navigateTo('home')" data-i18n="catTech">Teknologi</a></li>
+                        <li><a href="#" onclick="navigateTo('home')" data-i18n="catHealth">Kesehatan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footerCompany">Perusahaan</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="navAbout">Tentang Kami</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footerFollow">Ikuti Kami</h4>
+                    <ul>
+                        <li><a href="#">Twitter / X</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Science Community. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+    <script>
+        // --- TRANSLATIONS DICTIONARY ---
+        const i18n = {
+            id: {
+                navHome: "Beranda", navCat: "Kategori", navAuthor: "Penulis", navAbout: "Tentang", navContact: "Kontak",
+                heroTitle: "Eksplorasi Sains,<br>Inovasi, dan Penemuan",
+                heroDesc: "Platform komunitas sains terdepan yang menghubungkan pengetahuan masa lalu, penemuan masa kini, dan visi masa depan untuk mencerdaskan kehidupan bangsa.",
+                btnRead: "Baca Artikel", btnExplore: "Jelajahi Kategori",
+                statArticles: "Artikel Ilmiah", statCategories: "Kategori",
+                searchPlaceholder: "Cari judul artikel, topik, atau penulis...",
+                sortNew: "Terbaru", sortPop: "Terpopuler",
+                secFeatured: "Artikel Pilihan", emptyState: "Tidak ada artikel yang ditemukan.", emptyDesc: "Coba kata kunci atau kategori lain.",
+                newsTitle: "Tetap Terhubung dengan Inovasi", newsDesc: "Berlangganan newsletter kami untuk mendapatkan rangkuman artikel sains terbaik langsung ke inbox Anda setiap minggu.", newsPlaceholder: "Masukkan alamat email Anda", btnSubscribe: "Berlangganan",
+                readTime: "min baca", views: "tayangan",
+                contactTitle: "Hubungi Kami", contactDesc: "Punya pertanyaan seputar publikasi artikel sains, tawaran kemitraan, atau ingin berkontribusi di komunitas ini? Jangan ragu untuk menghubungi kami secara langsung.", contactRole: "Administrator & Community Manager", contactWA: "Chat via WhatsApp",
+                footerAbout: "Platform edukasi sains terdepan yang menyajikan artikel, inovasi, dan penemuan terbaru dengan standar jurnalistik tinggi untuk mencerahkan wawasan masyarakat Indonesia.", footerCompany: "Perusahaan", footerFollow: "Ikuti Kami",
+                catAll: "Semua", catAstro: "Astronomi", catPhysics: "Fisika", catChem: "Kimia", catBio: "Biologi", catTech: "Teknologi", catEnv: "Lingkungan", catHealth: "Kesehatan", catAI: "Kecerdasan Buatan",
+                toc: "Daftar Isi", ref: "Referensi Ilmiah", share: "Bagikan Artikel Ini:", related: "Artikel Terkait"
+            },
+            en: {
+                navHome: "Home", navCat: "Categories", navAuthor: "Authors", navAbout: "About", navContact: "Contact",
+                heroTitle: "Exploring Science,<br>Innovation, and Discovery",
+                heroDesc: "The leading science community platform connecting past knowledge, present discoveries, and future visions to enlighten society.",
+                btnRead: "Read Articles", btnExplore: "Explore Categories",
+                statArticles: "Science Articles", statCategories: "Categories",
+                searchPlaceholder: "Search article titles, topics, or authors...",
+                sortNew: "Newest", sortPop: "Most Popular",
+                secFeatured: "Featured Articles", emptyState: "No articles found.", emptyDesc: "Try another keyword or category.",
+                newsTitle: "Stay Connected with Innovation", newsDesc: "Subscribe to our newsletter to get summaries of the best science articles directly in your inbox every week.", newsPlaceholder: "Enter your email address", btnSubscribe: "Subscribe",
+                readTime: "min read", views: "views",
+                contactTitle: "Contact Us", contactDesc: "Have questions about science article publication, partnership offers, or want to contribute to this community? Feel free to contact us directly.", contactRole: "Administrator & Community Manager", contactWA: "Chat via WhatsApp",
+                footerAbout: "Leading science education platform presenting the latest articles, innovations, and discoveries with high journalistic standards.", footerCompany: "Company", footerFollow: "Follow Us",
+                catAll: "All", catAstro: "Astronomy", catPhysics: "Physics", catChem: "Chemistry", catBio: "Biology", catTech: "Technology", catEnv: "Environment", catHealth: "Health", catAI: "Artificial Intelligence",
+                toc: "Table of Contents", ref: "Scientific References", share: "Share This Article:", related: "Related Articles"
+            },
+            zh: {
+                navHome: "首页", navCat: "类别", navAuthor: "作者", navAbout: "关于", navContact: "联系",
+                heroTitle: "探索科学、<br>创新与发现",
+                heroDesc: "领先的科学社区平台，连接过去的知识、现在的发现和未来的愿景，以启发社会。",
+                btnRead: "阅读文章", btnExplore: "探索类别",
+                statArticles: "科学文章", statCategories: "类别",
+                searchPlaceholder: "搜索文章标题、主题或作者...",
+                sortNew: "最新", sortPop: "最受欢迎",
+                secFeatured: "精选文章", emptyState: "未找到文章。", emptyDesc: "尝试其他关键字或类别。",
+                newsTitle: "与创新保持联系", newsDesc: "订阅我们的时事通讯，每周直接在收件箱中获取最佳科学文章的摘要。", newsPlaceholder: "输入您的电子邮件地址", btnSubscribe: "订阅",
+                readTime: "分钟阅读", views: "次观看",
+                contactTitle: "联系我们", contactDesc: "对科学文章出版、合作报价有疑问，或者想为这个社区做出贡献？请随时直接与我们联系。", contactRole: "管理员与社区经理", contactWA: "通过 WhatsApp 聊天",
+                footerAbout: "领先的科学教育平台，以高新闻标准呈现最新的文章、创新和发现。", footerCompany: "公司", footerFollow: "关注我们",
+                catAll: "全部", catAstro: "天文学", catPhysics: "物理", catChem: "化学", catBio: "生物学", catTech: "技术", catEnv: "环境", catHealth: "健康", catAI: "人工智能",
+                toc: "目录", ref: "科学参考", share: "分享这篇文章：", related: "相关文章"
+            }
+        };
+
+        // Helper function for translations
+        function t(key) {
+            return i18n[state.lang][key] || key;
+        }
+
+        function updateStaticTexts() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.innerHTML = t(el.dataset.i18n);
+            });
+            document.getElementById('langSelect').value = state.lang;
+        }
+
+        function changeLanguage(lang) {
+            state.lang = lang;
+            localStorage.setItem('sciLang', lang);
+            updateStaticTexts();
+            render(); // Re-render dynamic content
+        }
+
+        // --- DATA BUMPER ---
+        const authorPool = ["Dr. Andi Wijaya", "Prof. Siti Rahma", "Budi Santoso, M.Sc", "Lina Marlina, Ph.D", "Dr. Kevin Pratama"];
+        
+        function getSVG(categoryKey) {
+            const colors = { catAstro: '1e3a8a', catPhysics: '312e81', catChem: '064e3b', catBio: '14532d', catTech: '4c1d95', catEnv: '065f46', catHealth: '831843', catAI: '581c87' };
+            const bg = colors[categoryKey] || '2563eb';
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%23${bg}"/><circle cx="300" cy="200" r="100" fill="%23ffffff" opacity="0.1"/><path d="M0,400 L600,400 L600,200 Q450,300 300,200 Q150,100 0,200 Z" fill="%23ffffff" opacity="0.05"/></svg>`;
+            return `data:image/svg+xml;utf8,${svg}`;
+        }
+
+        // Article base data with multi-language titles
+        const rawArticles = [
+            { catKey: 'catAI', titles: { id: 'Masa Depan AGI: Kapan Mesin Menyamai Manusia?', en: 'The Future of AGI: When Will Machines Equal Humans?', zh: 'AGI 的未来：机器何时能赶上人类？' } },
+            { catKey: 'catAstro', titles: { id: 'Misteri Lubang Hitam Supermasif', en: 'The Mystery of Supermassive Black Holes', zh: '超大质量黑洞之谜' } },
+            { catKey: 'catPhysics', titles: { id: 'Memahami Komputasi Kuantum', en: 'Understanding Quantum Computing', zh: '了解量子计算' } },
+            { catKey: 'catBio', titles: { id: 'CRISPR dan Rekayasa Genetika', en: 'CRISPR and Genetic Engineering', zh: 'CRISPR 与基因工程' } },
+            { catKey: 'catEnv', titles: { id: 'Dampak Perubahan Iklim', en: 'The Impact of Climate Change', zh: '气候变化的影响' } },
+            { catKey: 'catTech', titles: { id: 'Perkembangan Jaringan 6G', en: 'The Development of 6G Networks', zh: '6G 网络的发展' } },
+            { catKey: 'catHealth', titles: { id: 'Imunoterapi: Harapan Baru', en: 'Immunotherapy: A New Hope', zh: '免疫疗法：新的希望' } },
+            { catKey: 'catChem', titles: { id: 'Material Graphene dan Baterai', en: 'Graphene Materials and Batteries', zh: '石墨烯材料与电池' } },
+            { catKey: 'catAstro', titles: { id: 'Penemuan Eksoplanet Baru', en: 'Discovery of New Exoplanets', zh: '新系外行星的发现' } },
+            { catKey: 'catPhysics', titles: { id: 'Teori String: Mencari Persamaan', en: 'String Theory: Searching for Equations', zh: '弦理论：寻找方程式' } },
+            { catKey: 'catAI', titles: { id: 'Etika dalam Penggunaan AI', en: 'Ethics in AI Usage', zh: '人工智能使用的伦理' } },
+            { catKey: 'catBio', titles: { id: 'Mikrobioma Usus dan Otak', en: 'Gut Microbiome and the Brain', zh: '肠道微生物群与大脑' } },
+            { catKey: 'catHealth', titles: { id: 'Penyakit Neurodegeneratif', en: 'Neurodegenerative Diseases', zh: '神经退行性疾病' } },
+            { catKey: 'catEnv', titles: { id: 'Transisi Menuju Energi Terbarukan', en: 'Transition to Renewable Energy', zh: '向可再生能源过渡' } },
+            { catKey: 'catTech', titles: { id: 'Realitas Virtual dalam Pendidikan', en: 'Virtual Reality in Education', zh: '教育中的虚拟现实' } },
+            { catKey: 'catChem', titles: { id: 'Katalis Ramah Lingkungan', en: 'Eco-Friendly Catalysts', zh: '环保催化剂' } },
+            { catKey: 'catAstro', titles: { id: 'Misi Artemis: Kembali ke Bulan', en: 'Artemis Mission: Return to the Moon', zh: '阿耳忒弥斯任务：重返月球' } },
+            { catKey: 'catAI', titles: { id: 'Generative AI dalam Seni', en: 'Generative AI in Art', zh: '艺术中的生成式 AI' } },
+            { catKey: 'catPhysics', titles: { id: 'Fusi Nuklir: Energi Bersih', en: 'Nuclear Fusion: Clean Energy', zh: '核聚变：清洁能源' } },
+            { catKey: 'catBio', titles: { id: 'Epigenetik dan Lingkungan', en: 'Epigenetics and Environment', zh: '表观遗传学与环境' } }
+        ];
+
+        const articles = rawArticles.map((item, index) => {
+            const dateObj = new Date(2026, 5, 20 - index);
+            const dateStr = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); // Keep date format consistent or localize it later
+            
+            return {
+                id: index + 1,
+                catKey: item.catKey,
+                titles: item.titles,
+                author: authorPool[index % authorPool.length],
+                date: dateStr,
+                readTime: Math.floor(Math.random() * 5) + 4,
+                views: Math.floor(Math.random() * 5000) + 100,
+                image: getSVG(item.catKey),
+                excerpts: {
+                    id: `Eksplorasi mendalam mengenai topik ini, mengupas inovasi terbaru dan tantangan masa depan.`,
+                    en: `An in-depth exploration of this topic, uncovering the latest innovations and future challenges.`,
+                    zh: `对该主题的深入探索，揭示最新的创新和未来的挑战。`
+                },
+                contents: {
+                    id: `<p>Pendahuluan mengenai topik yang terus menjadi perbincangan hangat di kalangan akademisi. Perkembangan ini tidak hanya meredefinisi batasan sains kita saat ini, tetapi juga membuka paradigma baru.</p><h2>Latar Belakang</h2><p>Dalam dekade terakhir, inovasi telah mengalami lonjakan yang belum pernah terjadi sebelumnya. Para ilmuwan berpacu dengan waktu untuk memecahkan kode-kode alam semesta dan kehidupan.</p><h2>Inovasi dan Temuan</h2><p>Eksperimen terbaru menunjukkan hasil yang mengejutkan. Observasi mengindikasikan adanya anomali yang membantah beberapa postulat klasik.</p>`,
+                    en: `<p>An introduction to the topic that continues to be hotly debated among academics. This development not only redefines our current boundaries of science but also opens new paradigms.</p><h2>Background</h2><p>In the last decade, innovation has experienced an unprecedented surge. Scientists are racing against time to crack the codes of the universe and life.</p><h2>Innovations and Discoveries</h2><p>Recent experiments show surprising results. Observations indicate anomalies that contradict several classical postulates.</p>`,
+                    zh: `<p>有关该主题的介绍继续在学术界引起热烈讨论。这种发展不仅重新定义了我们当前的科学边界，而且开启了新的范式。</p><h2>背景</h2><p>在过去十年中，创新经历了前所未有的激增。科学家们正与时间赛跑，以破解宇宙和生命的密码。</p><h2>创新与发现</h2><p>最近的实验显示了令人惊讶的结果。观察表明存在与几个经典假设相矛盾的异常现象。</p>`
+                },
+                references: [
+                    "International Journal of Modern Science, Vol 45, 2026.",
+                    "Global Science Conference Proceedings, Tokyo, 2025."
+                ]
+            };
+        });
+
+        // --- STATE MANAGEMENT ---
+        let state = {
+            view: 'home',
+            currentArticleId: null,
+            searchQuery: '',
+            activeCategoryKey: 'catAll',
+            sortBy: 'terbaru',
+            bookmarks: JSON.parse(localStorage.getItem('sciBookmarks') || '[]'),
+            theme: localStorage.getItem('sciTheme') || 'light',
+            lang: localStorage.getItem('sciLang') || 'id'
+        };
+
+        const categoryKeys = ['catAll', 'catAstro', 'catPhysics', 'catChem', 'catBio', 'catTech', 'catEnv', 'catHealth', 'catAI'];
+
+        // --- CORE FUNCTIONS ---
+
+        function init() {
+            setTheme(state.theme);
+            updateStaticTexts();
+            render();
+            
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                document.getElementById('navLinks').classList.toggle('active');
+            });
+            
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                setTheme(state.theme === 'light' ? 'dark' : 'light');
+            });
+
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('backToTop');
+                if (window.scrollY > 300) btn.classList.add('show');
+                else btn.classList.remove('show');
+                
+                const header = document.querySelector('header');
+                if (window.scrollY > 10) header.style.boxShadow = 'var(--shadow)';
+                else header.style.boxShadow = 'none';
+            });
+        }
+
+        function setTheme(theme) {
+            state.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('sciTheme', theme);
+            const btn = document.getElementById('themeToggle');
+            if (theme === 'light') {
+                btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>`;
+            } else {
+                btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+            }
+        }
+
+        function navigateTo(view, articleId = null) {
+            state.view = view;
+            state.currentArticleId = articleId;
+            document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo(0,0);
+            
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if(view === 'home') document.querySelectorAll('.nav-links a')[0].classList.add('active');
+            if(view === 'contact') document.querySelectorAll('.nav-links a')[4].classList.add('active');
+
+            render();
+        }
+
+        function toggleBookmark(e, id) {
+            e.stopPropagation();
+            const index = state.bookmarks.indexOf(id);
+            if (index > -1) state.bookmarks.splice(index, 1);
+            else state.bookmarks.push(id);
+            localStorage.setItem('sciBookmarks', JSON.stringify(state.bookmarks));
+            if(state.view === 'home') renderGrid();
+        }
+
+        // --- RENDERERS ---
+
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = '';
+            
+            if (state.view === 'home') {
+                document.title = `${t('navHome')} - Science Community`;
+                app.innerHTML = getHomeHTML();
+                initHomeEvents();
+                renderGrid();
+            } else if (state.view === 'article') {
+                const article = articles.find(a => a.id === state.currentArticleId);
+                if(article) {
+                    document.title = `${article.titles[state.lang]} - Science Community`;
+                    app.innerHTML = getArticleHTML(article);
+                    initArticleEvents();
+                } else {
+                    navigateTo('home');
+                }
+            } else if (state.view === 'contact') {
+                document.title = `${t('navContact')} - Science Community`;
+                app.innerHTML = getContactHTML();
+            }
+            
+            setTimeout(initScrollAnimations, 100);
+        }
+
+        function getHomeHTML() {
+            return `
+                <section class="hero fade-in">
+                    <div class="container hero-container">
+                        <div class="hero-content">
+                            <h1>${t('heroTitle')}</h1>
+                            <p>${t('heroDesc')}</p>
+                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                <button class="btn btn-primary" onclick="document.getElementById('kategori').scrollIntoView({behavior:'smooth'})">${t('btnRead')}</button>
+                                <button class="btn btn-outline" onclick="document.getElementById('kategori').scrollIntoView({behavior:'smooth'})">${t('btnExplore')}</button>
+                            </div>
+                            <div class="hero-stats">
+                                <div class="stat-item glass" style="padding: 15px 30px; border-radius: 15px; flex: 1;">
+                                    <h3>${articles.length}</h3>
+                                    <p>${t('statArticles')}</p>
+                                </div>
+                                <div class="stat-item glass" style="padding: 15px 30px; border-radius: 15px; flex: 1;">
+                                    <h3>${categoryKeys.length - 1}</h3>
+                                    <p>${t('statCategories')}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="Science Innovation">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="kategori" class="controls-section fade-in">
+                    <div class="container">
+                        <div class="controls-wrapper glass">
+                            <div class="search-bar">
+                                <svg class="icon search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                                <input type="text" id="searchInput" placeholder="${t('searchPlaceholder')}" value="${state.searchQuery}">
+                            </div>
+                            <div class="filters">
+                                <div class="category-chips" id="categoryContainer"></div>
+                                <select class="sort-select" id="sortSelect">
+                                    <option value="terbaru" ${state.sortBy === 'terbaru' ? 'selected' : ''}>${t('sortNew')}</option>
+                                    <option value="terpopuler" ${state.sortBy === 'terpopuler' ? 'selected' : ''}>${t('sortPop')}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="articles-section fade-in">
+                    <div class="container">
+                        <h2 class="section-title">${t('secFeatured')}</h2>
+                        <div class="grid" id="articleGrid"></div>
+                    </div>
+                </section>
+
+                <section class="fade-in">
+                    <div class="container">
+                        <div class="newsletter">
+                            <h2>${t('newsTitle')}</h2>
+                            <p>${t('newsDesc')}</p>
+                            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Success!'); this.reset();">
+                                <input type="email" placeholder="${t('newsPlaceholder')}" required>
+                                <button type="submit" class="btn btn-primary">${t('btnSubscribe')}</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderGrid() {
+            if (state.view !== 'home') return;
+            
+            const catContainer = document.getElementById('categoryContainer');
+            catContainer.innerHTML = categoryKeys.map(k => 
+                `<button class="chip ${state.activeCategoryKey === k ? 'active' : ''}" data-cat="${k}">${t(k)}</button>`
+            ).join('');
+            
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    state.activeCategoryKey = e.target.dataset.cat;
+                    renderGrid();
+                });
+            });
+
+            let filtered = articles.filter(a => {
+                const matchCat = state.activeCategoryKey === 'catAll' || a.catKey === state.activeCategoryKey;
+                const searchTxt = state.searchQuery.toLowerCase();
+                const matchSearch = a.titles[state.lang].toLowerCase().includes(searchTxt) || a.author.toLowerCase().includes(searchTxt);
+                return matchCat && matchSearch;
+            });
+
+            if (state.sortBy === 'terbaru') filtered.sort((a, b) => b.id - a.id);
+            else filtered.sort((a, b) => b.views - a.views);
+
+            const grid = document.getElementById('articleGrid');
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="empty-state"><h3>${t('emptyState')}</h3><p>${t('emptyDesc')}</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((a, index) => {
+                const isBookmarked = state.bookmarks.includes(a.id);
+                return `
+                <div class="card glass" onclick="navigateTo('article', ${a.id})" style="animation: fadeUp 0.5s ease-out ${index * 0.05}s forwards; opacity:0; transform:translateY(20px);">
+                    <div class="card-img-wrapper">
+                        <span class="card-category">${t(a.catKey)}</span>
+                        <div class="card-bookmark ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(event, ${a.id})">
+                            <svg class="icon" viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                        </div>
+                        <img src="${a.image}" alt="${a.titles[state.lang]}" class="card-img" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><svg class="icon" style="width:14px;height:14px;display:inline;vertical-align:-2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${a.date}</span>
+                            <span><svg class="icon" style="width:14px;height:14px;display:inline;vertical-align:-2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${a.readTime} ${t('readTime')}</span>
+                        </div>
+                        <h3 class="card-title">${a.titles[state.lang]}</h3>
+                        <p class="card-excerpt">${a.excerpts[state.lang]}</p>
+                        <div class="card-footer">
+                            <div class="author-info">
+                                <div class="author-avatar">${a.author.charAt(0)}</div>
+                                <span>${a.author}</span>
+                            </div>
+                            <span style="color:var(--text-muted); font-size:0.8rem;">${a.views} ${t('views')}</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function initHomeEvents() {
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                state.searchQuery = e.target.value;
+                renderGrid();
+            });
+            document.getElementById('sortSelect').addEventListener('change', (e) => {
+                state.sortBy = e.target.value;
+                renderGrid();
+            });
+        }
+
+        function getArticleHTML(article) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = article.contents[state.lang];
+            const headings = tempDiv.querySelectorAll('h2');
+            let tocHTML = '<ul class="toc-list">';
+            headings.forEach((h, i) => {
+                const id = `heading-${i}`;
+                h.id = id;
+                tocHTML += `<li><a href="#${id}">${h.innerText}</a></li>`;
+            });
+            tocHTML += '</ul>';
+            
+            const related = articles.filter(a => a.catKey === article.catKey && a.id !== article.id).slice(0, 3);
+            let relatedHTML = '';
+            if (related.length > 0) {
+                relatedHTML = `
+                    <div style="margin-top: 60px; border-top: 1px solid var(--border-glass); padding-top: 40px;">
+                        <h2 class="section-title">${t('related')}</h2>
+                        <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                            ${related.map(a => `
+                                <div class="card glass" onclick="navigateTo('article', ${a.id})">
+                                    <div class="card-img-wrapper"><img src="${a.image}" alt="${a.titles[state.lang]}" class="card-img" style="height:150px;"></div>
+                                    <div class="card-content" style="padding: 15px;">
+                                        <h4 style="font-size:1.1rem; margin-bottom:10px; line-height:1.3; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${a.titles[state.lang]}</h4>
+                                        <div class="card-meta" style="margin:0;"><span style="font-size:0.8rem">${a.date}</span></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="container article-detail-wrapper fade-in">
+                    <div class="breadcrumb">
+                        <a href="#" onclick="navigateTo('home')">${t('navHome')}</a> &rsaquo; 
+                        <a href="#" onclick="state.activeCategoryKey='${article.catKey}'; navigateTo('home'); setTimeout(()=>document.getElementById('kategori').scrollIntoView(), 100);">${t(article.catKey)}</a> &rsaquo; 
+                        ${article.titles[state.lang]}
+                    </div>
+
+                    <div class="article-header">
+                        <span class="chip active" style="margin-bottom:15px; display:inline-block">${t(article.catKey)}</span>
+                        <h1 class="article-title">${article.titles[state.lang]}</h1>
+                        <div class="article-meta-large">
+                            <div class="author-info">
+                                <div class="author-avatar" style="width:40px;height:40px;font-size:1.2rem">${article.author.charAt(0)}</div>
+                                <span>${article.author}</span>
+                            </div>
+                            <span>•</span>
+                            <span>${article.date}</span>
+                            <span>•</span>
+                            <span>${article.readTime} ${t('readTime')}</span>
+                            <span>•</span>
+                            <span>${article.views} ${t('views')}</span>
+                        </div>
+                    </div>
+
+                    <img src="${article.image}" alt="${article.titles[state.lang]}" class="article-hero-img">
+
+                    <div class="article-layout">
+                        <aside class="toc-sidebar glass">
+                            <h3>${t('toc')}</h3>
+                            ${headings.length > 0 ? tocHTML : ''}
+                        </aside>
+
+                        <div>
+                            <div class="article-body">
+                                ${tempDiv.innerHTML}
+                            </div>
+
+                            <div class="article-references">
+                                <h3>${t('ref')}</h3>
+                                <ul>${article.references.map(ref => `<li>${ref}</li>`).join('')}</ul>
+                            </div>
+
+                            <div class="article-actions glass">
+                                <strong>${t('share')}</strong>
+                                <div class="share-buttons">
+                                    <button class="btn-share" onclick="alert('Share Twitter')" aria-label="Twitter"><svg class="icon" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></button>
+                                    <button class="btn-share" onclick="alert('Share Facebook')" aria-label="Facebook"><svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></button>
+                                    <button class="btn-share" onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')" aria-label="Copy Link"><svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></button>
+                                </div>
+                            </div>
+
+                            ${relatedHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getContactHTML() {
+            return `
+                <div class="container fade-in" style="padding: 40px 0;">
+                    <div class="breadcrumb" style="margin-bottom: 0;">
+                        <a href="#" onclick="navigateTo('home')">${t('navHome')}</a> &rsaquo; ${t('navContact')}
+                    </div>
+                    
+                    <div class="contact-section">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=800&q=80" alt="Contact Us" class="contact-image">
+                        </div>
+                        
+                        <div class="glass" style="padding: 40px; border-radius: 30px;">
+                            <h1 style="font-size: 2.8rem; margin-bottom: 20px; color: var(--primary);">${t('contactTitle')}</h1>
+                            <p style="font-size: 1.1rem; margin-bottom: 40px; color: var(--text-muted);">${t('contactDesc')}</p>
+                            
+                            <div style="margin-bottom: 40px; padding-left: 20px; border-left: 4px solid var(--accent);">
+                                <h3 style="font-size: 1.4rem; margin-bottom: 5px;">M. Fahri</h3>
+                                <p style="color: var(--text-muted); font-weight: 500;">${t('contactRole')}</p>
+                            </div>
+
+                            <a href="https://wa.me/6288216330453" target="_blank" class="btn btn-wa" style="width: 100%; font-size: 1.15rem; padding: 18px; border-radius: 15px;">
+                                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: currentColor; stroke: none; margin-right: 5px;">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                </svg>
+                                ${t('contactWA')}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initArticleEvents() {
+            document.querySelectorAll('.toc-list a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }`;
+        document.head.appendChild(style);
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+
+```
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --accent: #a855f7;
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 10px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button { cursor: pointer; border: none; font-family: inherit; }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow);
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 { color: var(--text-main); font-weight: 700; line-height: 1.2; }
+        p { color: var(--text-muted); margin-bottom: 1rem; }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-glass-solid);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
