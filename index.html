@@ -1,0 +1,1042 @@
+```html
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Community - Exploring Science, Innovation, and Discovery</title>
+    <meta name="description" content="Portal artikel sains modern, inovasi, dan penemuan terbaru.">
+    <style>
+        :root {
+            /* Light Theme */
+            --bg-body: #f8fafc;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --bg-glass-solid: rgba(255, 255, 255, 0.95);
+            --border-glass: rgba(255, 255, 255, 0.5);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent: #8b5cf6;
+            --wa-color: #25D366;
+            --wa-hover: #128C7E;
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 40px rgba(37, 99, 235, 0.15);
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-body: #0f172a;
+            --bg-glass: rgba(30, 41, 59, 0.7);
+            --bg-glass-solid: rgba(15, 23, 42, 0.95);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --accent: #a855f7;
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 10px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button { cursor: pointer; border: none; font-family: inherit; }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow);
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 { color: var(--text-main); font-weight: 700; line-height: 1.2; }
+        p { color: var(--text-muted); margin-bottom: 1rem; }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-glass-solid);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+
+        .theme-toggle {
+            background: transparent;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover { background: var(--bg-glass); }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-wa {
+            background-color: var(--wa-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .btn-wa:hover {
+            background-color: var(--wa-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+
+        /* Main Content Wrapper */
+        #app { margin-top: 70px; min-height: 80vh; }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .hero-content { flex: 1; }
+        .hero-image-wrapper { 
+            flex: 1; 
+            position: relative;
+        }
+        .hero-image-wrapper img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: var(--shadow-hover);
+            animation: float 6s ease-in-out infinite;
+            object-fit: cover;
+            height: 450px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; }
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-item h3 { font-size: 2rem; color: var(--primary); }
+        .stat-item p { font-size: 0.9rem; margin: 0; }
+
+        /* Search & Filter Section */
+        .controls-section { padding: 40px 0; }
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .search-bar { display: flex; width: 100%; position: relative; }
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border-radius: 30px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass-solid);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-bar input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+        .filters { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .category-chips { display: flex; gap: 10px; flex-wrap: wrap; flex: 1; }
+        .chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--bg-glass-solid);
+            border: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .chip:hover, .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .sort-select { padding: 10px 15px; border-radius: 10px; background: var(--bg-glass-solid); border: 1px solid var(--border-glass); color: var(--text-main); outline: none; cursor: pointer; }
+
+        /* Article Grid */
+        .articles-section { padding: 20px 0 60px; }
+        .section-title { font-size: 2rem; margin-bottom: 30px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 50%; height: 3px; background: var(--primary); border-radius: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .card { border-radius: 20px; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; position: relative; cursor: pointer; }
+        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border-glass); transition: transform 0.5s ease; }
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-img-wrapper { overflow: hidden; position: relative; }
+        .card-category { position: absolute; top: 15px; left: 15px; background: rgba(15, 23, 42, 0.7); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(4px); }
+        .card-bookmark { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; color: var(--text-main); z-index: 2; }
+        .card-bookmark.active { color: var(--primary); }
+        .card-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+        .card-meta { display: flex; gap: 15px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; }
+        .card-title { font-size: 1.25rem; margin-bottom: 10px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-excerpt { font-size: 0.95rem; margin-bottom: 20px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 15px; font-size: 0.85rem; }
+        .author-info { display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 600; }
+        .author-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+
+        /* Article Detail Page */
+        .article-detail-wrapper { max-width: 900px; margin: 0 auto; padding: 40px 0; }
+        .breadcrumb { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+        .breadcrumb a { color: var(--primary); }
+        .article-header { text-align: center; margin-bottom: 40px; }
+        .article-title { font-size: 2.8rem; margin: 15px 0; }
+        .article-meta-large { display: flex; justify-content: center; align-items: center; gap: 20px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; flex-wrap: wrap; }
+        .article-hero-img { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; margin-bottom: 40px; box-shadow: var(--shadow); }
+        
+        .article-layout { display: grid; grid-template-columns: 250px 1fr; gap: 40px; align-items: start; }
+        .toc-sidebar { position: sticky; top: 100px; padding: 20px; border-radius: 15px; }
+        .toc-sidebar h3 { font-size: 1.1rem; margin-bottom: 15px; color: var(--primary); border-bottom: 1px solid var(--border-glass); padding-bottom: 10px; }
+        .toc-list li { margin-bottom: 10px; }
+        .toc-list a { font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
+        .toc-list a:hover { color: var(--primary); padding-left: 5px; }
+        
+        .article-body { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); }
+        .article-body h2 { font-size: 1.8rem; margin: 40px 0 20px; color: var(--primary); scroll-margin-top: 90px; }
+        .article-body p { margin-bottom: 20px; color: inherit; }
+        .article-quote { border-left: 4px solid var(--accent); padding: 20px 30px; margin: 30px 0; background: var(--bg-glass); border-radius: 0 15px 15px 0; font-style: italic; font-size: 1.2rem; }
+        .article-references { margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--border-glass); }
+        .article-references h3 { margin-bottom: 15px; }
+        .article-references li { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; }
+        
+        .article-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding: 20px; border-radius: 15px; }
+        .share-buttons { display: flex; gap: 10px; }
+        .btn-share { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-glass-solid); border: 1px solid var(--border-glass); display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: var(--transition); }
+        .btn-share:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        /* Contact Page */
+        .contact-section {
+            padding: 40px 0 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .contact-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Newsletter */
+        .newsletter { margin: 80px 0; padding: 60px 20px; text-align: center; border-radius: 30px; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--bg-glass-solid), var(--bg-glass)); }
+        .newsletter::before { content: ''; position: absolute; width: 300px; height: 300px; background: var(--accent); filter: blur(100px); opacity: 0.1; top: -150px; right: -150px; border-radius: 50%; }
+        .newsletter h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        .newsletter p { max-width: 500px; margin: 0 auto 30px; }
+        .newsletter-form { display: flex; max-width: 500px; margin: 0 auto; gap: 10px; }
+        .newsletter-form input { flex: 1; padding: 15px 25px; border-radius: 30px; border: 1px solid var(--border-glass); background: var(--bg-body); color: var(--text-main); outline: none; }
+        .newsletter-form input:focus { border-color: var(--primary); }
+
+        /* Footer */
+        footer { background: var(--bg-glass-solid); border-top: 1px solid var(--border-glass); padding: 60px 0 20px; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-about p { margin-top: 20px; font-size: 0.95rem; }
+        .footer-links h4 { font-size: 1.1rem; margin-bottom: 20px; color: var(--primary); }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { font-size: 0.95rem; color: var(--text-muted); transition: var(--transition); }
+        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--border-glass); font-size: 0.9rem; color: var(--text-muted); }
+
+        /* Back to top */
+        #backToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 99; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
+        #backToTop.show { opacity: 1; visibility: visible; }
+        #backToTop:hover { transform: translateY(-5px); background: var(--accent); }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* SVG Icons Inline */
+        .icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container, .contact-section { flex-direction: column; text-align: center; }
+            .hero-content, .hero-image-wrapper { width: 100%; }
+            .hero-stats { justify-content: center; }
+            .contact-image { height: 350px; }
+            .article-layout { grid-template-columns: 1fr; }
+            .toc-sidebar { position: static; margin-bottom: 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--bg-glass-solid); backdrop-filter: blur(20px); flex-direction: column; align-items: center; padding-top: 40px; transition: var(--transition); }
+            .nav-links.active { left: 0; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .newsletter-form { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* Empty state */
+        .empty-state { text-align: center; padding: 50px 0; color: var(--text-muted); grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo" onclick="navigateTo('home')">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--primary); width: 28px; height: 28px;">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                SciComm
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#" class="active" onclick="navigateTo('home')">Beranda</a>
+                <a href="#kategori" onclick="navigateTo('home'); setTimeout(()=>document.getElementById('kategori').scrollIntoView(), 100);">Kategori</a>
+                <a href="#" onclick="alert('Fitur Penulis dalam pengembangan')">Penulis</a>
+                <a href="#" onclick="alert('Fitur Tentang dalam pengembangan')">Tentang</a>
+                <a href="#" onclick="navigateTo('contact')">Kontak</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                    <!-- Icon will be injected by JS -->
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app">
+        <!-- Content injected by JavaScript -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="logo">
+                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--primary); width: 24px; height: 24px;">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        Science Community
+                    </a>
+                    <p>Platform edukasi sains terdepan yang menyajikan artikel, inovasi, dan penemuan terbaru dengan standar jurnalistik tinggi untuk mencerahkan wawasan masyarakat Indonesia.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Kategori</h4>
+                    <ul>
+                        <li><a href="#" onclick="navigateTo('home')">Astronomi</a></li>
+                        <li><a href="#" onclick="navigateTo('home')">Fisika</a></li>
+                        <li><a href="#" onclick="navigateTo('home')">Teknologi</a></li>
+                        <li><a href="#" onclick="navigateTo('home')">Kesehatan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Privasi & Kebijakan</a></li>
+                        <li><a href="#">Syarat Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Ikuti Kami</h4>
+                    <ul>
+                        <li><a href="#">Twitter / X</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Science Community. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+    <script>
+        // --- DATA BUMPER (20 Realistic Science Articles) ---
+        const authorPool = ["Dr. Andi Wijaya", "Prof. Siti Rahma", "Budi Santoso, M.Sc", "Lina Marlina, Ph.D", "Dr. Kevin Pratama"];
+        
+        // Helper to generate a placeholder SVG matching the category color
+        function getSVG(category) {
+            const colors = {
+                'Astronomi': '1e3a8a', 'Fisika': '312e81', 'Kimia': '064e3b',
+                'Biologi': '14532d', 'Teknologi': '4c1d95', 'Lingkungan': '065f46',
+                'Kesehatan': '831843', 'Kecerdasan Buatan': '581c87'
+            };
+            const bg = colors[category] || '2563eb';
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%23${bg}"/><circle cx="300" cy="200" r="100" fill="%23ffffff" opacity="0.1"/><path d="M0,400 L600,400 L600,200 Q450,300 300,200 Q150,100 0,200 Z" fill="%23ffffff" opacity="0.05"/><text x="50%" y="50%" font-family="sans-serif" font-size="32" font-weight="bold" fill="%23ffffff" text-anchor="middle" dominant-baseline="middle">${category}</text></svg>`;
+            return `data:image/svg+xml;utf8,${svg}`;
+        }
+
+        const rawArticles = [
+            { cat: 'Kecerdasan Buatan', title: 'Masa Depan AGI: Kapan Mesin Menyamai Manusia?' },
+            { cat: 'Astronomi', title: 'Misteri Lubang Hitam Supermasif di Pusat Bimasakti' },
+            { cat: 'Fisika', title: 'Memahami Komputasi Kuantum dan Potensinya' },
+            { cat: 'Biologi', title: 'CRISPR dan Masa Depan Rekayasa Genetika' },
+            { cat: 'Lingkungan', title: 'Dampak Perubahan Iklim Terhadap Terumbu Karang' },
+            { cat: 'Teknologi', title: 'Perkembangan Jaringan 6G dan Ekspektasinya' },
+            { cat: 'Kesehatan', title: 'Imunoterapi: Harapan Baru dalam Pengobatan Kanker' },
+            { cat: 'Kimia', title: 'Material Graphene dan Revolusi Baterai Masa Depan' },
+            { cat: 'Astronomi', title: 'Penemuan Eksoplanet Baru di Zona Layak Huni' },
+            { cat: 'Fisika', title: 'Teori String: Mencari Persamaan Segala Sesuatu' },
+            { cat: 'Kecerdasan Buatan', title: 'Etika dalam Penggunaan AI di Sektor Medis' },
+            { cat: 'Biologi', title: 'Mikrobioma Usus dan Pengaruhnya Terhadap Otak' },
+            { cat: 'Kesehatan', title: 'Penyakit Neurodegeneratif dan Pendekatan Terapi Baru' },
+            { cat: 'Lingkungan', title: 'Transisi Menuju Energi Terbarukan di Tahun 2030' },
+            { cat: 'Teknologi', title: 'Realitas Virtual dalam Pendidikan Interaktif' },
+            { cat: 'Kimia', title: 'Katalis Ramah Lingkungan untuk Industri Kimia' },
+            { cat: 'Astronomi', title: 'Misi Artemis: Kembalinya Manusia ke Bulan' },
+            { cat: 'Kecerdasan Buatan', title: 'Generative AI dalam Dunia Seni dan Desain' },
+            { cat: 'Fisika', title: 'Fusi Nuklir: Sumber Energi Bersih Tak Terbatas?' },
+            { cat: 'Biologi', title: 'Epigenetik: Bagaimana Lingkungan Mengubah DNA Anda' }
+        ];
+
+        // Generate full articles data
+        const articles = rawArticles.map((item, index) => {
+            const dateObj = new Date(2026, 5, 20 - index);
+            const dateStr = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            return {
+                id: index + 1,
+                title: item.title,
+                category: item.cat,
+                author: authorPool[index % authorPool.length],
+                date: dateStr,
+                readTime: Math.floor(Math.random() * 5) + 4,
+                views: Math.floor(Math.random() * 5000) + 100,
+                image: getSVG(item.cat),
+                excerpt: `Eksplorasi mendalam mengenai ${item.title.toLowerCase()}, mengupas inovasi terbaru, tantangan, serta prospeknya bagi masa depan peradaban dan sains global.`,
+                content: `
+                    <p>Pendahuluan mengenai topik <strong>${item.title}</strong> yang terus menjadi perbincangan hangat di kalangan akademisi dan peneliti di seluruh dunia. Perkembangan ini tidak hanya meredefinisi batasan sains kita saat ini, tetapi juga membuka paradigma baru.</p>
+                    
+                    <h2>Latar Belakang dan Konteks</h2>
+                    <p>Dalam dekade terakhir, ${item.cat.toLowerCase()} telah mengalami lonjakan inovasi yang belum pernah terjadi sebelumnya. Para ilmuwan berpacu dengan waktu untuk memecahkan kode-kode alam semesta dan kehidupan. Secara historis, pendekatan konservatif sering kali membatasi penemuan eksperimental, namun dengan komputasi modern dan alat observasi canggih, hal tersebut telah berubah secara drastis.</p>
+                    <p>Fenomena ini menuntut pemahaman lintas disiplin, menggabungkan data empiris dengan pemodelan teoritis yang kompleks.</p>
+
+                    <h2>Inovasi dan Temuan Kunci</h2>
+                    <p>Eksperimen terbaru menunjukkan hasil yang mengejutkan. Observasi mengindikasikan adanya anomali yang membantah beberapa postulat klasik. Alat diagnostik generasi terbaru memungkinkan pemetaan variabel dengan akurasi hingga skala nano. Hal ini memberikan kejelasan tak tertandingi mengenai mekanisme internal fenomena tersebut.</p>
+                    <p>Menurut jurnal bergengsi terbaru, keberhasilan implementasi teori ini bergantung pada stabilitas parameter eksternal. Jika ini bisa dikontrol, skalabilitasnya tidak akan terbatas.</p>
+                    
+                    <h2>Prospek Masa Depan</h2>
+                    <p>Meskipun penuh harapan, jalan ke depan tidak tanpa tantangan. Isu etika, efisiensi alokasi sumber daya, dan dampak jangka panjang masih memerlukan konsensus global. Komunitas ${item.cat.toLowerCase()} global harus menyusun regulasi progresif yang mendukung inovasi tanpa mengorbankan prinsip kehati-hatian.</p>
+                    <p>Kesimpulannya, era baru penemuan telah dimulai. Kesiapan kita beradaptasi akan menentukan seberapa jauh kita bisa memajukan peradaban.</p>
+                `,
+                quote: "Ilmu pengetahuan bukanlah sekadar kumpulan fakta, melainkan sebuah cara berpikir yang kritis dan terus mencari kebenaran yang tak berujung.",
+                references: [
+                    "Jurnal Internasional Sains Modern, Vol 45, Issue 2, 2026.",
+                    "Prosiding Konferensi Global " + item.cat + ", Tokyo, 2025.",
+                    "Publikasi Institut Penelitian Sains Terapan."
+                ]
+            };
+        });
+
+        // --- STATE MANAGEMENT ---
+        let state = {
+            view: 'home', // 'home', 'article', 'contact'
+            currentArticleId: null,
+            searchQuery: '',
+            activeCategory: 'Semua',
+            sortBy: 'terbaru',
+            bookmarks: JSON.parse(localStorage.getItem('sciBookmarks') || '[]'),
+            theme: localStorage.getItem('sciTheme') || 'light'
+        };
+
+        const categories = ['Semua', ...new Set(articles.map(a => a.category))];
+
+        // --- CORE FUNCTIONS ---
+
+        function init() {
+            setTheme(state.theme);
+            render();
+            
+            // Setup mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                document.getElementById('navLinks').classList.toggle('active');
+            });
+            
+            // Setup theme toggle
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                const newTheme = state.theme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
+            });
+
+            // Scroll listener for back to top & header
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('backToTop');
+                if (window.scrollY > 300) btn.classList.add('show');
+                else btn.classList.remove('show');
+                
+                const header = document.querySelector('header');
+                if (window.scrollY > 10) header.style.boxShadow = 'var(--shadow)';
+                else header.style.boxShadow = 'none';
+            });
+        }
+
+        function setTheme(theme) {
+            state.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('sciTheme', theme);
+            
+            const btn = document.getElementById('themeToggle');
+            if (theme === 'light') {
+                btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>`;
+            } else {
+                btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+            }
+        }
+
+        function navigateTo(view, articleId = null) {
+            state.view = view;
+            state.currentArticleId = articleId;
+            document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo(0,0);
+            
+            // Update active nav state
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if(view === 'home') document.querySelectorAll('.nav-links a')[0].classList.add('active');
+            if(view === 'contact') document.querySelectorAll('.nav-links a')[4].classList.add('active');
+
+            render();
+        }
+
+        function toggleBookmark(e, id) {
+            e.stopPropagation();
+            const index = state.bookmarks.indexOf(id);
+            if (index > -1) {
+                state.bookmarks.splice(index, 1);
+            } else {
+                state.bookmarks.push(id);
+            }
+            localStorage.setItem('sciBookmarks', JSON.stringify(state.bookmarks));
+            if(state.view === 'home') renderGrid(); // Re-render just the grid
+        }
+
+        // --- RENDERERS ---
+
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = '';
+            
+            if (state.view === 'home') {
+                document.title = "Science Community - Exploring Science, Innovation, and Discovery";
+                app.innerHTML = getHomeHTML();
+                initHomeEvents();
+                renderGrid();
+            } else if (state.view === 'article') {
+                const article = articles.find(a => a.id === state.currentArticleId);
+                if(article) {
+                    document.title = `${article.title} - Science Community`;
+                    app.innerHTML = getArticleHTML(article);
+                    initArticleEvents();
+                } else {
+                    navigateTo('home');
+                }
+            } else if (state.view === 'contact') {
+                document.title = "Kontak - Science Community";
+                app.innerHTML = getContactHTML();
+            }
+            
+            // Trigger scroll animations
+            setTimeout(initScrollAnimations, 100);
+        }
+
+        function getHomeHTML() {
+            const totalViews = articles.reduce((acc, curr) => acc + curr.views, 0);
+            return `
+                <section class="hero fade-in">
+                    <div class="container hero-container">
+                        <div class="hero-content">
+                            <h1>Exploring Science,<br>Innovation, and Discovery</h1>
+                            <p>Platform komunitas sains terdepan yang menghubungkan pengetahuan masa lalu, penemuan masa kini, dan visi masa depan untuk mencerdaskan kehidupan bangsa.</p>
+                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                <button class="btn btn-primary" onclick="document.getElementById('kategori').scrollIntoView({behavior:'smooth'})">Baca Artikel</button>
+                                <button class="btn btn-outline" onclick="document.getElementById('kategori').scrollIntoView({behavior:'smooth'})">Jelajahi Kategori</button>
+                            </div>
+                            <div class="hero-stats">
+                                <div class="stat-item glass" style="padding: 15px 30px; border-radius: 15px; flex: 1;">
+                                    <h3>${articles.length}</h3>
+                                    <p>Artikel Ilmiah</p>
+                                </div>
+                                <div class="stat-item glass" style="padding: 15px 30px; border-radius: 15px; flex: 1;">
+                                    <h3>${categories.length - 1}</h3>
+                                    <p>Kategori</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="Science Innovation Visualization">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="kategori" class="controls-section fade-in">
+                    <div class="container">
+                        <div class="controls-wrapper glass">
+                            <div class="search-bar">
+                                <svg class="icon search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                                <input type="text" id="searchInput" placeholder="Cari judul artikel, topik, atau penulis..." value="${state.searchQuery}">
+                            </div>
+                            <div class="filters">
+                                <div class="category-chips" id="categoryContainer">
+                                    <!-- Rendered by JS -->
+                                </div>
+                                <select class="sort-select" id="sortSelect">
+                                    <option value="terbaru" ${state.sortBy === 'terbaru' ? 'selected' : ''}>Terbaru</option>
+                                    <option value="terpopuler" ${state.sortBy === 'terpopuler' ? 'selected' : ''}>Terpopuler</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="articles-section fade-in">
+                    <div class="container">
+                        <h2 class="section-title">Artikel Pilihan</h2>
+                        <div class="grid" id="articleGrid">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="fade-in">
+                    <div class="container">
+                        <div class="newsletter">
+                            <h2>Tetap Terhubung dengan Inovasi</h2>
+                            <p>Berlangganan newsletter kami untuk mendapatkan rangkuman artikel sains terbaik langsung ke inbox Anda setiap minggu.</p>
+                            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Terima kasih telah berlangganan!'); this.reset();">
+                                <input type="email" placeholder="Masukkan alamat email Anda" required>
+                                <button type="submit" class="btn btn-primary">Berlangganan</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderGrid() {
+            if (state.view !== 'home') return;
+            
+            // Render Categories
+            const catContainer = document.getElementById('categoryContainer');
+            catContainer.innerHTML = categories.map(cat => 
+                `<button class="chip ${state.activeCategory === cat ? 'active' : ''}" data-cat="${cat}">${cat}</button>`
+            ).join('');
+            
+            // Add listeners to chips
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    state.activeCategory = e.target.dataset.cat;
+                    renderGrid();
+                });
+            });
+
+            // Filter & Sort
+            let filtered = articles.filter(a => {
+                const matchCat = state.activeCategory === 'Semua' || a.category === state.activeCategory;
+                const matchSearch = a.title.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
+                                    a.author.toLowerCase().includes(state.searchQuery.toLowerCase());
+                return matchCat && matchSearch;
+            });
+
+            if (state.sortBy === 'terbaru') {
+                filtered.sort((a, b) => b.id - a.id); // Assuming higher ID is newer based on mock gen
+            } else {
+                filtered.sort((a, b) => b.views - a.views);
+            }
+
+            // Render Articles
+            const grid = document.getElementById('articleGrid');
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="empty-state"><h3>Tidak ada artikel yang ditemukan.</h3><p>Coba kata kunci atau kategori lain.</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((a, index) => {
+                const isBookmarked = state.bookmarks.includes(a.id);
+                return `
+                <div class="card glass" onclick="navigateTo('article', ${a.id})" style="animation: fadeUp 0.5s ease-out ${index * 0.05}s forwards; opacity:0; transform:translateY(20px);">
+                    <div class="card-img-wrapper">
+                        <span class="card-category">${a.category}</span>
+                        <div class="card-bookmark ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(event, ${a.id})" title="Simpan Artikel">
+                            <svg class="icon" viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                        </div>
+                        <img src="${a.image}" alt="${a.title}" class="card-img" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><svg class="icon" style="width:14px;height:14px;display:inline;vertical-align:-2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${a.date}</span>
+                            <span><svg class="icon" style="width:14px;height:14px;display:inline;vertical-align:-2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${a.readTime} min read</span>
+                        </div>
+                        <h3 class="card-title">${a.title}</h3>
+                        <p class="card-excerpt">${a.excerpt}</p>
+                        <div class="card-footer">
+                            <div class="author-info">
+                                <div class="author-avatar">${a.author.charAt(0)}</div>
+                                <span>${a.author}</span>
+                            </div>
+                            <span style="color:var(--text-muted); font-size:0.8rem;">${a.views} views</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function initHomeEvents() {
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                state.searchQuery = e.target.value;
+                renderGrid();
+            });
+            document.getElementById('sortSelect').addEventListener('change', (e) => {
+                state.sortBy = e.target.value;
+                renderGrid();
+            });
+        }
+
+        function getArticleHTML(article) {
+            // Generate Auto TOC
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = article.content;
+            const headings = tempDiv.querySelectorAll('h2');
+            let tocHTML = '<ul class="toc-list">';
+            headings.forEach((h, i) => {
+                const id = `heading-${i}`;
+                h.id = id;
+                tocHTML += `<li><a href="#${id}">${h.innerText}</a></li>`;
+            });
+            tocHTML += '</ul>';
+            const parsedContent = tempDiv.innerHTML;
+
+            // Related Articles (Same category, excluding current)
+            const related = articles.filter(a => a.category === article.category && a.id !== article.id).slice(0, 3);
+            let relatedHTML = '';
+            if (related.length > 0) {
+                relatedHTML = `
+                    <div style="margin-top: 60px; border-top: 1px solid var(--border-glass); padding-top: 40px;">
+                        <h2 class="section-title">Artikel Terkait</h2>
+                        <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                            ${related.map(a => `
+                                <div class="card glass" onclick="navigateTo('article', ${a.id})">
+                                    <div class="card-img-wrapper"><img src="${a.image}" alt="${a.title}" class="card-img" style="height:150px;"></div>
+                                    <div class="card-content" style="padding: 15px;">
+                                        <h4 style="font-size:1.1rem; margin-bottom:10px; line-height:1.3; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${a.title}</h4>
+                                        <div class="card-meta" style="margin:0;"><span style="font-size:0.8rem">${a.date}</span></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="container article-detail-wrapper fade-in">
+                    <div class="breadcrumb">
+                        <a href="#" onclick="navigateTo('home')">Beranda</a> &rsaquo; 
+                        <a href="#" onclick="state.activeCategory='${article.category}'; navigateTo('home'); setTimeout(()=>document.getElementById('kategori').scrollIntoView(), 100);">${article.category}</a> &rsaquo; 
+                        ${article.title}
+                    </div>
+
+                    <div class="article-header">
+                        <span class="chip active" style="margin-bottom:15px; display:inline-block">${article.category}</span>
+                        <h1 class="article-title">${article.title}</h1>
+                        <div class="article-meta-large">
+                            <div class="author-info">
+                                <div class="author-avatar" style="width:40px;height:40px;font-size:1.2rem">${article.author.charAt(0)}</div>
+                                <span>${article.author}</span>
+                            </div>
+                            <span>•</span>
+                            <span>${article.date}</span>
+                            <span>•</span>
+                            <span>${article.readTime} Menit Baca</span>
+                            <span>•</span>
+                            <span>${article.views} Tayangan</span>
+                        </div>
+                    </div>
+
+                    <img src="${article.image}" alt="${article.title}" class="article-hero-img">
+
+                    <div class="article-layout">
+                        <aside class="toc-sidebar glass">
+                            <h3>Daftar Isi</h3>
+                            ${headings.length > 0 ? tocHTML : '<p style="font-size:0.9rem">Tidak ada daftar isi.</p>'}
+                        </aside>
+
+                        <div>
+                            <div class="article-body">
+                                ${parsedContent}
+                                <div class="article-quote">${article.quote}</div>
+                            </div>
+
+                            <div class="article-references">
+                                <h3>Referensi Ilmiah</h3>
+                                <ul>
+                                    ${article.references.map(ref => `<li>${ref}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="article-actions glass">
+                                <strong>Bagikan Artikel Ini:</strong>
+                                <div class="share-buttons">
+                                    <button class="btn-share" onclick="alert('Bagikan ke Twitter/X')" aria-label="Twitter">
+                                        <svg class="icon" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                                    </button>
+                                    <button class="btn-share" onclick="alert('Bagikan ke Facebook')" aria-label="Facebook">
+                                        <svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                                    </button>
+                                    <button class="btn-share" onclick="navigator.clipboard.writeText(window.location.href); alert('Tautan disalin!')" aria-label="Copy Link">
+                                        <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            ${relatedHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getContactHTML() {
+            return `
+                <div class="container fade-in" style="padding: 40px 0;">
+                    <div class="breadcrumb" style="margin-bottom: 0;">
+                        <a href="#" onclick="navigateTo('home')">Beranda</a> &rsaquo; Kontak
+                    </div>
+                    
+                    <div class="contact-section">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=800&q=80" alt="Hubungi Kami" class="contact-image">
+                        </div>
+                        
+                        <div class="glass" style="padding: 40px; border-radius: 30px;">
+                            <h1 style="font-size: 2.8rem; margin-bottom: 20px; color: var(--primary);">Hubungi Kami</h1>
+                            <p style="font-size: 1.1rem; margin-bottom: 40px; color: var(--text-muted);">
+                                Punya pertanyaan seputar publikasi artikel sains, tawaran kemitraan, atau ingin berkontribusi di komunitas ini? Jangan ragu untuk menghubungi kami secara langsung.
+                            </p>
+                            
+                            <div style="margin-bottom: 40px; padding-left: 20px; border-left: 4px solid var(--accent);">
+                                <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Anonim</h3>
+                                <p style="color: var(--text-muted); font-weight: 500;">Administrator & Community Manager</p>
+                            </div>
+
+                            <a href="https://wa.me/6288216330453" target="_blank" class="btn btn-wa" style="width: 100%; font-size: 1.15rem; padding: 18px; border-radius: 15px;">
+                                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: currentColor; stroke: none; margin-right: 5px;">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                </svg>
+                                Chat via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initArticleEvents() {
+            // Smooth scroll for TOC links
+            document.querySelectorAll('.toc-list a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        // Add dynamic style for js animations
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }`;
+        document.head.appendChild(style);
+
+        // Start App
+        document.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
+
+```
